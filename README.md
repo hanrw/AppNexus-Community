@@ -1,11 +1,11 @@
 # AppNexus Community
 
-A community-curated list of apps that appear in the [AppMate](https://appmate.onegai.app) showcase.
+A community-curated list of apps that appear in the [AppNexus](https://appnexus.app) showcase.
 
 ## What is this?
 
-[AppMate](https://appmate.onegai.app) helps indie developers manage their App Store apps.
-This repo lets the community add their own apps to the AppMate showcase — just edit `apps.json` and open a PR.
+[AppNexus](https://appnexus.app) helps indie developers manage their App Store apps.
+This repo lets the community add their own apps to the AppNexus showcase — just edit `apps.json` and open a PR.
 
 ## Add your app
 
@@ -26,7 +26,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for step-by-step instructions.
 1. You open a PR adding your entry to `apps.json`
 2. CI validates the JSON against the schema and checks for duplicates
 3. A maintainer reviews and merges
-4. The AppMate site picks it up on the next build
+4. The AppNexus site picks it up on the next build
 
 ## File reference
 
@@ -38,5 +38,4 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for step-by-step instructions.
 
 ## Links
 
-- [AppMate website](https://appmate.onegai.app)
-- [AppMate source](https://github.com/hanrw/AppMate)
+- [AppNexus website](https://appnexus.app)

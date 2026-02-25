@@ -1,6 +1,6 @@
 # Contributing to AppNexus Community
 
-Apps listed here appear in the [AppMate](https://appmate.onegai.app) showcase.
+Apps listed here appear in the [AppNexus](https://appnexus.app) showcase.
 
 ## How to add your app
 
@@ -51,7 +51,7 @@ Use this if iTunes lookup returns the wrong data or your app isn't on the US sto
 ```
 
 3. **Open a Pull Request** with the title `feat: add [Your App Name]`.
-4. Once merged, your app will appear on the site at the next build.
+4. Once merged, your app will appear on [appnexus.app](https://appnexus.app) at the next build.
 
 ## Rules
 
