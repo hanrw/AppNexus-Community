@@ -1,70 +1,25 @@
 # Contributing to AppNexus Community
 
-Apps listed here appear in the [AppNexus](https://appnexus.app) showcase.
+Apps listed here appear on the [AppNexus](https://appnexus.app) app wall.
 
-## How to add your app
+## Add your app in 3 steps
 
 1. **Fork** this repository.
-2. Edit `apps.json` — choose the method that fits your case:
 
-### Option A — Add your developer ID (easiest)
-
-All of your App Store apps are included automatically.
+2. **Add your App Store URL** to `apps.json`:
 
 ```json
-{
-  "developers": ["1725133580"],
-  ...
-}
+[
+  "https://apps.apple.com/app/your-app-name/id123456789"
+]
 ```
 
-Find your developer ID: open any of your apps in the App Store, tap your name,
-then copy the numeric ID from the URL:
-`https://apps.apple.com/developer/your-name/id<THIS_NUMBER>`
+You can copy the URL directly from the App Store or App Store Connect.
 
-### Option B — Add individual app IDs
-
-```json
-{
-  "appIds": ["6448311069"],
-  ...
-}
-```
-
-Find an app ID in its App Store URL:
-`https://apps.apple.com/app/your-app/id<THIS_NUMBER>`
-
-### Option C — Manual entry
-
-Use this if iTunes lookup returns the wrong data or your app isn't on the US store.
-
-```json
-{
-  "manual": [
-    {
-      "id": "6448311069",
-      "name": "Your App Name",
-      "icon": "https://is1-ssl.mzstatic.com/..."
-    }
-  ]
-}
-```
-
-3. **Open a Pull Request** with the title `feat: add [Your App Name]`.
-4. Once merged, your app will appear on [appnexus.app](https://appnexus.app) at the next build.
+3. **Open a Pull Request** — once merged, your app appears on the wall at the next build.
 
 ## Rules
 
 - Only submit apps you own or have permission to feature.
-- No duplicate entries (check existing IDs before adding).
-- Icon URLs must be from `mzstatic.com` (App Store CDN) or a stable public host.
-- PRs that don't follow the schema will fail the validation check automatically.
-
-## Validation
-
-The CI workflow validates `apps.json` against `schema.json` on every PR.
-You can validate locally with:
-
-```bash
-npx ajv-cli validate -s schema.json -d apps.json
-```
+- No duplicate URLs.
+- Must be a valid App Store URL containing `/id` followed by a numeric ID.

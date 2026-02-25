@@ -17,25 +17,20 @@ jobs:
           node-version: 20
 
       - name: Install AJV CLI
-        run: npm install -g ajv-cli ajv-formats
+        run: npm install -g ajv-cli
 
       - name: Validate schema
         run: ajv validate -s schema.json -d apps.json --strict=false
 
-      - name: Check for duplicate IDs
+      - name: Check for duplicate URLs
         run: |
           node - <<'EOF'
           const fs = require("fs");
-          const data = JSON.parse(fs.readFileSync("apps.json", "utf8"));
-          const all = [
-            ...(data.developers || []),
-            ...(data.appIds || []),
-            ...(data.manual || []).map(a => a.id),
-          ].map(String);
-          const dupes = all.filter((id, i) => all.indexOf(id) !== i);
+          const urls = JSON.parse(fs.readFileSync("apps.json", "utf8"));
+          const dupes = urls.filter((url, i) => urls.indexOf(url) !== i);
           if (dupes.length) {
-            console.error("Duplicate IDs found:", [...new Set(dupes)].join(", "));
+            console.error("Duplicate URLs found:\n" + [...new Set(dupes)].join("\n"));
             process.exit(1);
           }
-          console.log(`✓ ${all.length} entries, no duplicates`);
+          console.log(`✓ ${urls.length} app(s), no duplicates`);
           EOF

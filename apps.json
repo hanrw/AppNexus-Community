@@ -1,6 +1,3 @@
-{
-  "$schema": "https://raw.githubusercontent.com/hanrw/AppNexus-Community/main/schema.json",
-  "developers": [],
-  "appIds": ["590338362"],
-  "manual": []
-}
+[
+  "https://apps.apple.com/app/id590338362"
+]
