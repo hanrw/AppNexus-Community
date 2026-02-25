@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AppNexus Community Apps",
+  "description": "Schema for community app submissions shown on the AppMate showcase.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "developers": {
+      "type": "array",
+      "description": "Apple developer IDs — all apps from this developer are included automatically.",
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9]+$",
+        "description": "Numeric developer ID (found in the App Store developer URL)"
+      }
+    },
+    "appIds": {
+      "type": "array",
+      "description": "Individual App Store app IDs.",
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9]+$"
+      }
+    },
+    "manual": {
+      "type": "array",
+      "description": "Manually specified apps (when iTunes lookup is insufficient).",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "icon"],
+        "additionalProperties": false,
+        "properties": {
+          "id":   { "type": "string", "pattern": "^[0-9]+$" },
+          "name": { "type": "string", "minLength": 1 },
+          "icon": { "type": "string", "format": "uri" }
+        }
+      }
+    }
+  }
+}

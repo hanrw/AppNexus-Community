@@ -1,0 +1,41 @@
+name: Validate apps.json
+
+on:
+  pull_request:
+    paths:
+      - apps.json
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install AJV CLI
+        run: npm install -g ajv-cli ajv-formats
+
+      - name: Validate schema
+        run: ajv validate -s schema.json -d apps.json --strict=false
+
+      - name: Check for duplicate IDs
+        run: |
+          node - <<'EOF'
+          const fs = require("fs");
+          const data = JSON.parse(fs.readFileSync("apps.json", "utf8"));
+          const all = [
+            ...(data.developers || []),
+            ...(data.appIds || []),
+            ...(data.manual || []).map(a => a.id),
+          ].map(String);
+          const dupes = all.filter((id, i) => all.indexOf(id) !== i);
+          if (dupes.length) {
+            console.error("Duplicate IDs found:", [...new Set(dupes)].join(", "));
+            process.exit(1);
+          }
+          console.log(`✓ ${all.length} entries, no duplicates`);
+          EOF
