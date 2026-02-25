@@ -1,3 +1,8 @@
 [
-  "https://apps.apple.com/us/app/honkai-star-rail/id1599719154"
+  {
+    "developer": "itshan",
+    "apps": [
+      "https://apps.apple.com/us/app/honkai-star-rail/id1599719154"
+    ]
+  }
 ]

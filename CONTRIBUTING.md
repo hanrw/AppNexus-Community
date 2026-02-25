@@ -6,20 +6,25 @@ Apps listed here appear on the [AppNexus](https://appnexus.app) app wall.
 
 1. **Fork** this repository.
 
-2. **Add your App Store URL** to `apps.json`:
+2. **Add your entry** to `apps.json`:
 
 ```json
-[
-  "https://apps.apple.com/app/your-app-name/id123456789"
-]
+{
+  "developer": "Your Name",
+  "apps": [
+    "https://apps.apple.com/app/your-app/id123456789"
+  ]
+}
 ```
 
-You can copy the URL directly from the App Store or App Store Connect.
+You can copy the App Store URL directly from the App Store or App Store Connect.
+Add multiple apps under one entry if you have more than one.
 
-3. **Open a Pull Request** — once merged, your app appears on the wall at the next build.
+3. **Open a Pull Request** — once merged, your apps appear on the wall at the next build.
 
 ## Rules
 
 - Only submit apps you own or have permission to feature.
-- No duplicate URLs.
+- One entry per developer.
+- No duplicate App Store URLs.
 - Must be a valid App Store URL containing `/id` followed by a numeric ID.

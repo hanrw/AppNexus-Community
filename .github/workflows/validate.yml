@@ -22,15 +22,18 @@ jobs:
       - name: Validate schema
         run: ajv validate -s schema.json -d apps.json --strict=false
 
-      - name: Check for duplicate URLs
+      - name: Check for duplicate app URLs
         run: |
           node - <<'EOF'
           const fs = require("fs");
-          const urls = JSON.parse(fs.readFileSync("apps.json", "utf8"));
-          const dupes = urls.filter((url, i) => urls.indexOf(url) !== i);
+          const entries = JSON.parse(fs.readFileSync("apps.json", "utf8"));
+          const allUrls = entries.flatMap(e => e.apps);
+          const dupes = allUrls.filter((url, i) => allUrls.indexOf(url) !== i);
           if (dupes.length) {
             console.error("Duplicate URLs found:\n" + [...new Set(dupes)].join("\n"));
             process.exit(1);
           }
-          console.log(`✓ ${urls.length} app(s), no duplicates`);
+          const totalApps = allUrls.length;
+          const totalDevs = entries.length;
+          console.log(`✓ ${totalDevs} developer(s), ${totalApps} app(s), no duplicates`);
           EOF
